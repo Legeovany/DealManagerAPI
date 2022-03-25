@@ -25,7 +25,7 @@ Rotas
 {
     "flightId": INTEGER,
     "departureTime": DATE (Ex: “2022-06-30 18:00:00”),
-    "arrivalTime": DATE (Ex: “2022-06-30 22:00:00”),,
+    "arrivalTime": DATE (Ex: “2022-06-30 22:00:00”),
     "airportDeparture": STRING,
     "airportArrival": STRING,
     "seatsQty": INTEGER,
