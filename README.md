@@ -1,16 +1,16 @@
 Instruções para executar a aplicação
 
 
-1- Primeiramente realizar o clone do projeto em uma pasta local.
-2- Rodar o comando “npm install“ no terminal aberto no diretório em que o projeto está para que todas as dependências sejam instaladas.
-3- Inicializar o servidor MySQL localmente e no MySQL Workbench criar o DB (localhost) com as seguintes informações:
-	Nome: flightTickets
-Usuário: 'root'
-Senha: '' (Em branco)
-Obs: Não é necessário criar as tabelas pois o próprio código estará criando.
-4- Após isto será necessário somente inicializar a aplicação rodando o comando “npm start“ no próprio terminal do VSCode caso esteja utilizando este editor.
+1- Primeiramente realizar o clone do projeto em uma pasta local.<br>
+2- Rodar o comando “npm install“ no terminal aberto no diretório em que o projeto está para que todas as dependências sejam instaladas.<br>
+3- Inicializar o servidor MySQL localmente e no MySQL Workbench criar o DB (localhost) com as seguintes informações:<br>
+	Nome: flightTickets<br>
+	Usuário: 'root'<br>
+	Senha: '' (Em branco)<br>
+	Obs: Não é necessário criar as tabelas pois o próprio código estará criando.<br>
+4- Após isto será necessário somente inicializar a aplicação rodando o comando “npm start“ no próprio terminal do VSCode caso esteja utilizando este editor.<br>
 
-Rotas
+Routes
 
 1. Adicionar voo.
    Obs: esse método deve criar os assentos vinculados ao voo
@@ -21,56 +21,60 @@ Rotas
 6. Listar passagens por voo
 7. Obter detalhe da passagem aérea contendo os dados do voo também
 
-1- http://localhost:3000/flight/add = JSON(
-{
-    "flightId": INTEGER,
-    "departureTime": DATE (Ex: “2022-06-30 18:00:00”),
-    "arrivalTime": DATE (Ex: “2022-06-30 22:00:00”),
-    "airportDeparture": STRING,
-    "airportArrival": STRING,
-    "seatsQty": INTEGER,
-    "price": INTEGER
+1- http://localhost:3000/flight/add = JSON(<br>
+{<br>
+    "flightId": INTEGER,<br>
+    "departureTime": DATE (Ex: “2022-06-30 18:00:00”),<br>
+    "arrivalTime": DATE (Ex: “2022-06-30 22:00:00”),<br>
+    "airportDeparture": STRING,<br>
+    "airportArrival": STRING,<br>
+    "seatsQty": INTEGER,<br>
+    "price": INTEGER<br>
+})<br>
+
+
+2- http://localhost:3000/client/add = JSON(<br>
+{<br>
+    "name": STRING,<br>
+    "email": STRING,<br>
+    "cpfRg": STRING,<br>
+    "phoneNumber": STRING<br>
+})<br>
+
+
+3- http://localhost:3000/ticket/buy = JSON(<br>
+{<br>
+    "flightId": STRING,<br>
+    "seat": STRING,<br>
+    "clientId": STRING<br>
 })
 
-2- http://localhost:3000/client/add = JSON(
-{
-    "name": STRING,
-    "email": STRING,
-    "cpfRg": STRING,
-    "phoneNumber": STRING
-})
+
+4- http://localhost:3000/flight/flightTickets = JSON(<br>
+{<br>
+    "flightId": STRING<br>
+})<br>
 
 
+5- http://localhost:3000/ticket/getClientTickets = JSON(<br>
+{<br>
+    "clientId": STRING<br>
+})<br>
 
-3- http://localhost:3000/ticket/buy = JSON(
-{
-    "flightId": STRING,
-    "seat": STRING,
-    "clientId": STRING
-})
 
-4- http://localhost:3000/flight/flightTickets = JSON(
-{
-    "flightId": STRING
-})
+6/7- http://localhost:3000/ticket/getFlightTickets = JSON(<br>
+{<br>
+    "flightId": STRING<br>
+})<br>
 
-5- http://localhost:3000/ticket/getClientTickets = JSON(
-{
-    "clientId": STRING
-})
-
-6/7- http://localhost:3000/ticket/getFlightTickets = JSON(
-{
-    "flightId": STRING
-})
 
 Tools
 
 Foram utilizadas as seguintes ferramentas para o desenvolvimento da API:
 
-•	Nodejs
-•	ExpressJs
-•	MySQL
-•	Sequelize
-•	Nodemon
-•	MVC Architecture
+•	Nodejs<br>
+•	ExpressJs<br>
+•	MySQL<br>
+•	Sequelize<br>
+•	Nodemon<br>
+•	MVC Architecture<br>
