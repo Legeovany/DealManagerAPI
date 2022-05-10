@@ -5,17 +5,13 @@ const router = express.Router()
 import ClientController from '../controllers/ClientController.js'
 
 
+router.get('/get', ClientController.getClient)
 
 router.post('/add', ClientController.createClient)
 
-//router.post('/add', ClientController.createTaskSave)
+router.delete('/delete', ClientController.deleteClient)
 
-//router.get('/edit/:id', ClientController.editTask)
-
-
-
-
-
+router.put('/update', ClientController.updateClient)
 
 
 export default router;

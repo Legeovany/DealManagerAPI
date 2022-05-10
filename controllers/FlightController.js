@@ -62,6 +62,71 @@ class FlightController {
             })
         }
     }
+
+
+    static async deleteFlight(req, res) {
+
+        try{
+            
+            const flight = {
+                id: req.body.flightId
+            }
+
+            if(!flight.id) return res.status(400).send({message: "flightid is required"})
+            
+
+            const ticketSearch = await Ticket.findOne({where: {flight_id: flight.id}})
+            const flightSearch = await Flight.findOne({where: {flightId: flight.id}})
+            if(!flightSearch) return res.status(404).send({message: "Flight not found"})
+
+            await Flight.destroy({where: {flightId: flight.id}})
+            await Ticket.destroy({where: {flight_id: flight.id}})
+
+            res.status(201).send({message: "Flight and Flight's Tickets Deleted Successfully!"})
+
+
+        } catch(err) {
+                console.log(err)
+                return res.status(500).send({
+                    message: "Internal server error..."
+                })
+            }
+    }
+
+
+    static async updateFlight(req, res) {
+
+        try{
+            
+            const flight = {
+                flightId: req.body.flightId,
+                departureTime: req.body.departureTime,
+                arrivalTime: req.body.arrivalTime,
+                airportDeparture: req.body.airportDeparture,
+                airportArrival: req.body.airportArrival,
+                price: req.body.price,
+            }
+
+            if(!flight.flightId) return res.status(400).send({message: "id is required"})
+
+            const flightSearch = await Flight.findOne({where: {flightId: flight.flightId}})
+            if(!flightSearch) return res.status(404).send({message: "Flight not found"})
+
+            await Flight.update(flight, {where: {flightId: flight.flightId}})
+
+            res.status(201).send({message: "Update Successfull!"})
+
+
+        } catch(err) {
+                console.log(err)
+                return res.status(500).send({
+                    message: "Internal server error..."
+                })
+            }
+    }
+
+
+
 }
 
 

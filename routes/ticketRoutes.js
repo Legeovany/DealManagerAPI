@@ -11,6 +11,8 @@ router.get('/getClientTickets', TicketController.getClientTickets)
 
 router.get('/getFlightTickets', TicketController.getFlightTickets)
 
+router.put('/refundTicket', TicketController.refundTicket)
+
 
 
 

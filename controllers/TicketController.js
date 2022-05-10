@@ -111,6 +111,43 @@ class TicketController {
             })
         }
     }
+
+
+    static async refundTicket(req, res) {
+
+        try{
+            
+            const { flightId, seat, clientId} = req?.body
+
+            if (!seat) return res.status(400).send({message: "seat is required"})
+            if (!flightId) return res.status(400).send({message: "Flight ID is required"})
+            if (!clientId) return res.status(400).send({message: "Client ID is required"})
+
+            const client = await Client.findOne({where: {id: clientId}})
+            if(!client) return res.status(404).send({message: "Client not found"})
+
+            let ticket = await Ticket.findOne({where: {seat: seat, status: "Purchased", flight_id: flightId}})
+            if(!ticket) return res.status(404).send({message: "Ticket not found"})
+            
+            await Ticket.update({
+                client_id: null, 
+                purchase_date: null,
+                status: "Available"
+            }, {where: {seat: seat, flight_id: flightId}})
+    
+            ticket = await Ticket.findOne({where: {seat: seat, flight_id: flightId}})
+
+            res.status(201).send({message: "Ticket Refunded!",
+            TicketID: ticket.dataValues})
+
+        } catch(err) {
+            console.log(err)
+            return res.status(500).send({
+                message: "Internal server error..."
+            })
+        }
+    }
+
 }
 
 export default TicketController;
