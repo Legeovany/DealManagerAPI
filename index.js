@@ -3,30 +3,25 @@ import express from "express";
 const app = express()
 
 import conn from './db/conn.js'
-import Flight from './models/Flight.js'
-import Client from './models/Client.js'
-import Ticket from './models/Ticket.js'
+import Request from './models/Request.js'
 
 
-import clientRoutes from './routes/clientRoutes.js'
-import flightRoutes from './routes/flightRoutes.js'
-import ticketRoutes from './routes/TicketRoutes.js'
+
+import requestRoutes from './routes/requestRoutes.js'
+import userRoutes from './routes/userRoutes.js'
+
 
 
 app.use(express.urlencoded({
     extended: true
 }))
-
 app.use(express.json())
 
 
-app.use('/client', clientRoutes)
+app.use('/request', requestRoutes)
+app.use('/user', userRoutes)
 
 
-app.use('/flight', flightRoutes)
-
-
-app.use('/ticket', ticketRoutes)
 
 
 conn.sync().then(() => {
