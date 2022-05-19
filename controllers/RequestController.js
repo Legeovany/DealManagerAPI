@@ -17,8 +17,10 @@ class RequestController {
         const resp = await PipedriveService.getOpportunity(opportunity)
 
         var obj  = [resp.data.data]
+        var i = 0
 
-        for(let i = 0; i <= obj.length; i = i + 1 ) {
+
+        while(i < obj.length) {
             
             const deals = {
                 description: resp.data.data[i].title,
@@ -31,21 +33,32 @@ class RequestController {
                 clientId: resp.data.data[i].user_id.id
             }
 
-            let findDeals = await Request.findAll({where: {requestId: deals.requestId}})
 
-            if(findDeals == null) {
+            const findDeals = await Request.findAll({where: {requestId: deals.requestId}})
+
+
+            const dealsfoundindex = findDeals[0]
+
+            if(!dealsfoundindex) {
 
                 await Request.create(deals)
 
             }
 
+            i++
+
         }
 
-        let dealsByUser = await Request.findAll({where: {clientId: opportunity.userId}})
+        const a = new Array()
 
-        res.status(200).send(dealsByUser)
+        const dealsByUser = await Request.findAll({where: {clientId: opportunity.userId}})
+
+        a.push(dealsByUser)
+
+        res.status(200).send(a) 
 
     }
+    
 
     static async getDealByDate(req, res) {
 
