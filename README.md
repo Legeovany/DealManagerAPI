@@ -34,7 +34,7 @@ Routes<br>
 
 3- http://localhost:3000/request/deals? = JSON PARAMS(<br>
 {<br>
-    "user_id": INTEGER, (Esta informação é retornada ao criar o usuário)<br>
+    "user_id": INTEGER, (This info is being returned when the user is created)<br>
 })<br>
 
 
